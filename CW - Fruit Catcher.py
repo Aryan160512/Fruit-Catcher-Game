@@ -27,7 +27,7 @@ def getExtraActors(numOfExtraActors):
     allItemsToCreate = ['apple']
     for i in range(numOfExtraActors):
         randomItem = random.choice(ITEMS)
-        allItemsToCreate.append(ITEMS[randomItem])
+        allItemsToCreate.append(randomItem)
     return allItemsToCreate
 
 def createActors(actorsToBeCreated):
@@ -40,6 +40,16 @@ def createActors(actorsToBeCreated):
 def makeActors(extraActors):
     actorsToCreate = getExtraActors(extraActors)
     newActors = createActors(actorsToCreate)
+    layoutActors(newActors)
+    return newActors
+
+def layoutActors(actorsToLayout):
+    numOfGaps = len(actorsToLayout) + 1
+    gapSize = WIDTH / numOfGaps
+    random.shuffle(actorsToLayout)
+    for index, actor in enumerate(actorsToLayout):
+        xpos = (index + 1) * gapSize
+        actor.x = xpos
 
 def update():
     global displayedItems, currentLevel
@@ -50,7 +60,7 @@ def update():
 def draw():
     global displayedItems, currentLevel, gameOver, gameComplete
     screen.clear()
-    screen.blit('CWbackground', (0, 0))
+    screen.blit('cwbackground', (0, 0))
 
     if gameOver:
         createMessage('GAME OVER', 'Better Luck Next Time')
