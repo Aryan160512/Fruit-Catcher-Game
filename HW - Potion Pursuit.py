@@ -3,7 +3,7 @@ import random
 
 WIDTH = 800
 HEIGHT = 600
-TITLE = 'Fruit Catcher Game'
+TITLE = 'Potion Pursuit'
 
 xcentre = WIDTH // 2
 ycentre = HEIGHT // 2
@@ -16,7 +16,7 @@ speed = 10
 gameOver = False
 gameComplete = False
 
-ITEMS = ['broccoli', 'cabbage', 'carrot', 'potato']
+ITEMS = ['blue_potion', 'green_potion', 'orange_potion', 'purple_potion']
 displayedItems = []
 
 def createMessage(title, subheading):
@@ -24,7 +24,7 @@ def createMessage(title, subheading):
     screen.draw.text(subheading, fontsize=40, center=(400, 350), color='white')
 
 def getExtraActors(numOfExtraActors):
-    allItemsToCreate = ['apple']
+    allItemsToCreate = ['red_potion']
     for i in range(numOfExtraActors):
         randomItem = random.choice(ITEMS)
         allItemsToCreate.append(ITEMS[randomItem])
@@ -50,7 +50,7 @@ def update():
 def draw():
     global displayedItems, currentLevel, gameOver, gameComplete
     screen.clear()
-    screen.blit('CWbackground', (0, 0))
+    screen.blit('HWbackground', (0, 0))
 
     if gameOver:
         createMessage('GAME OVER', 'Better Luck Next Time')
